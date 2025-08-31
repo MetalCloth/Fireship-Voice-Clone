@@ -1,12 +1,12 @@
 # Voice Cloning: Fireship (CSM-1B Model)
 
-A project focused on cloning the voice of the YouTuber Fireship using a Coqui Studio Model (CSM-1B). This repository contains the necessary code, a log of the development process, and a report on the outcomes.
+A project focused on cloning the voice of the YouTuber Fireship using a Coqui Studio Model (CSM-1B) and 1 hour voice data. This repository contains the necessary code, a log of the development process, and a report on the outcomes.
 
 
 
 ## 🔊 Final Audio Samples
 
-Here is a 30-second comparison between the original and the cloned audio.
+Here is a 10-second comparison between the original and the cloned audio.
 
 | Sample Type | Audio Player |
 | :---------- | :----------- |
