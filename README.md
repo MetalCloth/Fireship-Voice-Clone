@@ -2,9 +2,8 @@
 
 A project focused on cloning the voice of the YouTuber Fireship using a Coqui Studio Model (CSM-1B). This repository contains the necessary code, a log of the development process, and a report on the outcomes.
 
-
 <audio controls>
-  <source src="https://github.com/user-attachments/files/22068699/example_without_context.2.wav" type="audio/mpeg">
+  <source src="https://github.com/MetalCloth/Fireship-Voice-Clone/raw/main/example_without_context.2.wav" type="audio/wav">
   Your browser does not support the audio element.
 </audio>
 
