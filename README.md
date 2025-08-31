@@ -40,7 +40,7 @@ This section documents the development journey, including errors, confusing step
 | Phase / Task | Challenge & Error Encountered | Confusing Aspect | Solution & Learning |
 | :--- | :--- | :--- | :--- |
 | **Environment Setup** | `CUDA version mismatch` error when installing PyTorch. | The error message was unclear about which NVIDIA driver version was needed for the specific CUDA toolkit. | Had to downgrade the CUDA toolkit version to 11.8 to match the installed driver. **Learning:** Always check driver compatibility *before* installing ML libraries. |
-| **Data Preprocessing** | Audio files were not being normalized correctly, leading to distorted input. | The documentation for the preprocessing function wasn't clear about the expected audio format (e.g., 16-bit PCM, 22050 Hz). | Manually resampled and reformatted all input audio clips using FFmpeg before passing them to the script. **Learning:** Never trust input data; always enforce a strict format. |
+| **Data Preprocessing** | Audio files were not being normalized correctly, leading to distorted input especially the long war running  error with torchcodec not installed and sample_rate not found. | The documentation for the preprocessing function wasn't clear about the expected audio format (e.g., 16-bit PCM, 22050 Hz). | Manually resampled and reformatted all input audio clips using FFmpeg before passing them to the script. **Learning:** Never trust input data; always enforce a strict format. |
 | **Model Training** | `OutOfMemoryError` even on a capable GPU. | It was confusing why the memory was spiking, as the batch size seemed reasonable. | The issue was the audio clip length. Implemented a chunking strategy to keep all audio segments under 15 seconds. **Learning:** VRAM usage is tied to both batch size *and* sequence length. |
 | **Inference / Cloning** | The final cloned voice had a robotic, monotone sound. | The parameters for the vocoder were poorly documented, and it wasn't clear how they affected the output's naturalness. | After trial and error, I found that adjusting the `speaker_wav` parameter to use multiple reference clips improved the prosody significantly. **Learning:** Inference quality is highly dependent on tweaking hidden parameters. |
 
@@ -50,15 +50,15 @@ This section documents the development journey, including errors, confusing step
 
 ### What Worked Well
 
-* **CSM-1B Model:** The base model was powerful and capable of capturing Fireship's core vocal timbre with relatively small amounts of training data.
+* **CSM-1B Model:** The base model was powerful and capable of capturing Fireship's core vocal timbre with relatively small amounts of training data and worked pretty well.
 * **Data Cleaning:** The time spent meticulously cleaning and preparing the input audio clips (removing background noise, normalizing volume) had the biggest positive impact on the final output quality.
 * **Colab Environment:** Using Google Colab's free T4 GPU was sufficient for running the inference process without major investment.
 
 ### What Failed or Was Difficult
 
-* **Capturing Intonation:** The model struggled to replicate Fireship's signature fast-paced, sarcastic, and dynamic intonation. The cloned voice often sounded flatter and more neutral than the original.
-* **Initial Setup:** The initial environment setup was the most time-consuming and frustrating part due to conflicting library dependencies and CUDA issues.
-* **Real-Time Generation:** The process is far from real-time. Generating a 30-second clip took several minutes, making rapid testing difficult.
+* **Capturing Intonation:** The model struggled to replicate Fireship's signature fast-paced, sarcastic, and dynamic intonation. The cloned voice often sounded flatter and more neutral than the original but so much better compared to 1hr of data used.
+* **Initial Setup:** The initial environment setup was the most time-consuming and frustrating part due to conflicting library dependencies and CUDA issues and especialy torchcodec one which didnot register my audiopath and was very frustuating especially this display(Audio(....,sampling_rate=....)) this one was so time consuming to get right.
+* **Real-Time Generation:** The process is far from real-time. Generating a 30-second clip took couple of minutes, making rapid testing difficult.
 
 ### Suggestions for Improvement
 
@@ -72,9 +72,9 @@ This section documents the development journey, including errors, confusing step
 
 | Section | Time Taken |
 | :--- | :--- |
-| **Initial Research & Setup** | ~4 hours |
-| **Data Collection & Cleaning** | ~3 hours |
-| **Model Training / Fine-Tuning** | ~[1] hours |
+| **Initial Research & Setup** | ~3 hours |
+| **Data Collection & Cleaning** | ~5 hours |
+| **Model Training / Fine-Tuning** | ~[2] hours |
 | **Inference & Testing** | ~2 hours |
 | **Documentation & Reporting**| ~1 hour |
-| **Total** | **~[10] hours** |
+| **Total** | **~[13] hours** |
