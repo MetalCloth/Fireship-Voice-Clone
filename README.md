@@ -28,7 +28,7 @@ To run this project yourself, follow these steps:
 | :--- | :--- |
 | **Model Used** | Coqui Studio Model (CSM-1B) |
 | **GPU Required** | NVIDIA Tesla T4 / P100 (or better) |
-| **VRAM Required** | Approx. 8-12 GB |
+| **VRAM Required** | Approx. 16 GB |
 | **Key Libraries** | `TTS`, `torch`, `librosa` |
 
 ---
